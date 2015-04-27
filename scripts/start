@@ -13,6 +13,7 @@ then
 fi
 
 if [ ! -f /data/rtoolkit.sh ]
+then
     curl "http://drdanick.com/minecraft/mcrtoolkit10a15_3.zip" -o /data/toolkit.zip
 	cd /data/;
 	unzip toolkit.zip
