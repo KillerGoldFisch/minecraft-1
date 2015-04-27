@@ -22,7 +22,7 @@ then
 	rmdir "/data/serverdir"
 	rm -rf "/data/toolkit.zip"
 	chmod +x "/data/rtoolkit.sh"
-	sed -i 's/craftbukkit.jar/minecraft_server.jar/g' /data/toolkit/rapper.properties
+	sed -i 's/craftbukkit.jar/minecraft_server.jar/g' /data/toolkit/wrapper.properties
 fi
 
 if [ ! -f /data/eula.txt ]
