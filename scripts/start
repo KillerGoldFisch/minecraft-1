@@ -21,6 +21,7 @@ then
 	mv "/data/serverdir/"* /data/.
 	rmdir "/data/serverdir"
 	rm -rf "/data/toolkit.zip"
+	chmod +x "/data/rtoolkit.sh"
 fi
 
 if [ ! -f /data/eula.txt ]
