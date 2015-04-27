@@ -23,7 +23,7 @@ RUN    apt-get --yes update; apt-get --yes upgrade; apt-get --yes install softwa
 RUN    sudo apt-add-repository --yes ppa:webupd8team/java; apt-get --yes update
 RUN    echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections  && \
        echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections  && \
-       apt-get --yes install curl oracle-java8-installer
+       apt-get --yes install curl oracle-java8-installer unzip
 
 
 # Load in all of our config files.
@@ -36,6 +36,9 @@ RUN    chmod +x /start
 
 # 25565 is for minecraft
 EXPOSE 25565
+
+# 25561 is for telnet
+EXPOSE 25561
 
 # /data contains static files and database
 VOLUME ["/data"]

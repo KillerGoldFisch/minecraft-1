@@ -12,10 +12,20 @@ then
     curl "https://s3.amazonaws.com/Minecraft.Download/versions/1.8.3/minecraft_server.1.8.3.jar" -o /data/minecraft_server.jar
 fi
 
+if [ ! -f /data/rtoolkit.sh ]
+    curl "http://drdanick.com/minecraft/mcrtoolkit10a15_3.zip" -o /data/toolkit.zip
+	cd /data/;
+	unzip toolkit.zip
+	rm -rf "/data/UDP client"
+	mv "/data/serverdir/"* /data/.
+	rmdir "/data/serverdir"
+	rm -rf "/data/toolkit.zip"
+fi
+
 if [ ! -f /data/eula.txt ]
 then
     echo "eula=true" > /data/eula.txt
 fi
 
-cd /data/; java -Xmx2G -jar minecraft_server.jar nogui
+cd /data/; ./rtoolkit.sh
 
