@@ -6,29 +6,25 @@
 # Updated: Dec 14th, 2014
 # -----------------------------------------------------------------------------
 
+if [ ! -f /firstrun.txt ]
+then
+    touch /firstrun.txt
+    useradd -u $UID MC
+    echo "$USER" >> /USER.txt
+    echo "$PASS" >> /PASS.txt
+fi
 
 if [ ! -f /data/minecraft_server.jar ]
 then
-    curl "https://s3.amazonaws.com/Minecraft.Download/versions/1.10/minecraft_server.1.10.jar" -o /data/minecraft_server.jar
+    sudo -u MC curl "https://s3.amazonaws.com/Minecraft.Download/versions/1.10/minecraft_server.1.10.jar" -o /data/minecraft_server.jar
 fi
 
 if [ ! -f /data/rtoolkit.sh ]
 then
-    curl "http://drdanick.com/minecraft/mcrtoolkit10a15_3.zip" -o /data/toolkit.zip
-	cd /data/;
-	unzip toolkit.zip
-	rm -rf "/data/UDP client"
-	mv "/data/serverdir/"* /data/.
-	rmdir "/data/serverdir"
-	rm -rf "/data/toolkit.zip"
-	chmod +x "/data/rtoolkit.sh"
-	sed -i 's/craftbukkit.jar/minecraft_server.jar/g' /data/toolkit/wrapper.properties
+    sudo -u MC cp -rn /mcrtoolkit/* /data
+    chmod +x /data/rtoolkit.sh
 fi
 
-if [ ! -f /data/eula.txt ]
-then
-    echo "eula=true" > /data/eula.txt
-fi
-
-cd /data/; ./rtoolkit.sh
+cd /data/
+sudo -u MC ./rtoolkit.sh
 

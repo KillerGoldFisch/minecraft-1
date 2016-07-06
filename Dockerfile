@@ -25,6 +25,8 @@ RUN    echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-se
        echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections  && \
        apt-get --yes install curl oracle-java8-installer unzip
 
+# Add remote toolkit temporary directory
+ADD    ./mcrtoolkit/ /mcrtoolkit/
 
 # Load in all of our config files.
 ADD    ./scripts/start /start
@@ -33,6 +35,12 @@ ADD    ./scripts/start /start
 # Fix all permissions
 RUN    chmod +x /start
 
+# Default User
+ENV USER user
+ENV PASS pass
+
+# Process UID
+ENV UID 1000
 
 # 25565 is for minecraft
 EXPOSE 25565

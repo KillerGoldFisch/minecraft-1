@@ -9,7 +9,7 @@ Running this will build you a docker image with the latest version of both
 docker-minecraft and Minecraft itself.
 
 
-    docker build -t centzilius/minecraft git://github.com/centzilius/minecraft.git
+    docker build -t centzilius/minecraft git://github.com/killergoldfisch/minecraft-1.git
 
 
 ## Running 
@@ -24,7 +24,7 @@ same port as well. Same goes with the Telnet connection of the Toolkit
 Also be sure your mounted directory on your host machine is
 already created before running `mkdir -p /mnt/minecraft`.
 
-    docker run -d=true -p=25565:25565 -p=25561:25561 -v=/mnt/minecraft:/data centzilius/minecraft /start
+    docker run -d=true -e UID=1000 -e USER=user -e PASS=pass -p=25565:25565 -p=25561:25561 -v=/mnt/minecraft:/data killergoldfisch/minecraft /start
 
 From now on when you start/stop docker-minecraft you should use the container id
 with the following commands. To get your container id, after you initial run
